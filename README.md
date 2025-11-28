@@ -13,4 +13,4 @@ This will provide you a good looking theme, file tree, smart shortcuts, git inte
 
 # details
 
-The details are available in this [blog post](https://logical.li/blog/IDEalization-of-Vim/).
+The details are available in this [page](https://laziest.logical.li).
