@@ -12,8 +12,31 @@ Plug 'mhinz/vim-grepper'
 " Uncomment JEDI if you use Python
 "Plug 'davidhalter/jedi-vim'
 
-
 call plug#end()
+
+" Function to toggle terminal
+function! ToggleTerminal()
+
+  if exists("g:NERDTreeRoot") && g:NERDTreeRoot.path.str() != ''
+    let l:nerdtree_root = g:NERDTreeRoot.path.str()
+  else
+    let l:nerdtree_root = getcwd()
+  endif
+
+  if exists("t:terminal_bufnr") && bufwinnr(t:terminal_bufnr) != -1
+    " Terminal exists and is visible, forcefully close it
+    execute 'bwipeout! ' . t:terminal_bufnr
+    unlet t:terminal_bufnr
+  else
+    wincmd l
+    execute 'lcd' l:nerdtree_root
+    if &filetype ==# 'nerdtree'
+      wincmd p
+    endif
+    :terminal
+    let t:terminal_bufnr = bufnr('$')
+  endif
+endfunction
 
 " Function to toggle vertical maximization of the current window
 function! ToggleVerticalMaximize()
@@ -102,29 +125,6 @@ nnoremap <expr> <C-b> (&filetype ==# 'nerdtree' ? '' : ':TigBlame<CR>')
 " toggle line numbers
 " toggle terminal maximization
 
-" Function to toggle terminal
-function! ToggleTerminal()
-
-  if exists("g:NERDTreeRoot") && g:NERDTreeRoot.path.str() != ''
-    let l:nerdtree_root = g:NERDTreeRoot.path.str()
-  else
-    let l:nerdtree_root = getcwd()
-  endif
-
-  if exists("t:terminal_bufnr") && bufwinnr(t:terminal_bufnr) != -1
-    " Terminal exists and is visible, forcefully close it
-    execute 'bwipeout! ' . t:terminal_bufnr
-    unlet t:terminal_bufnr
-  else
-    wincmd l
-    execute 'lcd' l:nerdtree_root
-    if &filetype ==# 'nerdtree'
-      wincmd p
-    endif
-    :terminal
-    let t:terminal_bufnr = bufnr('$')
-  endif
-endfunction
 
 tnoremap <F2> <C-\><C-n>:call ToggleVerticalMaximize()<CR>
 tnoremap <F4> <C-\><C-n>:call ToggleTerminal()<CR>
