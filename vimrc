@@ -127,8 +127,10 @@ nnoremap <expr> <C-y> (&filetype ==# 'nerdtree' ? '' : ':TigOpenProjectRootDir<C
 nnoremap <expr> <C-b> (&filetype ==# 'nerdtree' ? '' : ':TigBlame<CR>')
 
 " unmap tig keys as they create awkward situations
+" the first assignement is dummy, it removes a shell warning
+" caused by the tig explorer bash installer
 
-let g:tig_explorer_keymap_edit_e  = ''
+let g:tig_explorer_keymap_edit_e  = 'e'
 let g:tig_explorer_keymap_edit    = ''
 let g:tig_explorer_keymap_tabedit = ''
 let g:tig_explorer_keymap_split   = ''
