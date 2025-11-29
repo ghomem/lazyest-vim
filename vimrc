@@ -14,6 +14,9 @@ Plug 'mhinz/vim-grepper'
 
 call plug#end()
 
+
+" ##### Functions #####
+
 " Function to toggle terminal
 function! ToggleTerminal()
 
@@ -57,7 +60,8 @@ function! ToggleVerticalMaximize()
   endif
 endfunction
 
-" NERDTree
+
+" ##### NERDTree #####
 "
 " focus on file if a file is given as an argument, else focus starts on the tree
 " updates CWD as you open a file
@@ -78,7 +82,16 @@ let NERDTreeChDirMode=2
 
 let NERDTreeShowHidden=1
 
-" Vim grepper (results on quickfix window -qf)
+" Sync NERDTree with the current vim CWD
+let NERDTreeMapCWD='<C-g>'
+
+" Allow the 'q' key to exist the NERDTree context menu (special PR at ghomem/nerdtree)
+let NERDTreeMenuQuit='q'
+
+
+" ##### Vim grepper #####
+"
+" Results appear on the quickfix window -qf
 "
 " Enter on grep results opens the file retaining focus on the result
 " q exits the grep results
@@ -86,7 +99,8 @@ let NERDTreeShowHidden=1
 autocmd FileType qf nnoremap <buffer> <CR> <CR><C-W>p
 autocmd FileType qf nnoremap <buffer> q :x<CR>
 
-" Colorscheme
+
+" ##### Colorscheme #####
 set termguicolors
 
 let g:tokyonight_style = 'night' " available: night, storm
@@ -106,7 +120,9 @@ let g:lightline = {
       \ },
       \ }
 
-" Key mappings
+
+" ##### General key mappings #####
+"
 " we include handy Shift + Tab shortcut for circulating through the windows
 " it works also in the terminal thanks to tnoremap
 nnoremap <silent> <C-Right> <c-w>l
@@ -140,7 +156,6 @@ let g:tig_explorer_keymap_vsplit  = ''
 " toggle line numbers
 " toggle terminal maximization
 
-
 tnoremap <F2> <C-\><C-n>:call ToggleVerticalMaximize()<CR>
 tnoremap <F4> <C-\><C-n>:call ToggleTerminal()<CR>
 tnoremap <F3> <C-\><C-n>:NERDTreeToggle<CR><c-w>l<c-w>ji
@@ -157,17 +172,16 @@ tnoremap <S-PageUp>   <C-W>N1k<C-B>
 " recursive search with Control+F
 nnoremap <C-f> :GrepperGrep<Space>
 
-" Sync NERDTree with the current vim CWD
-let NERDTreeMapCWD='<C-g>'
+" Comment visual selection
+xnoremap <leader>c :s/^/#/<CR>
 
-" Allow the 'q' key to exist the NERDTree context menu (special PR at ghomem/nerdtree)
-let NERDTreeMenuQuit='q'
-
+" Uncomment visual selection (removes leading #)
+xnoremap <leader>u :s/^#//<CR>
 " quit the usual way
 nnoremap :q :qa
 nnoremap :wq :wqa
 
-" Misc
+" ##### Misc settings #####
 
 " uncomment if you want numbers on by default
 " set number
@@ -187,8 +201,3 @@ set notimeout
 highlight ExtraWhitespace ctermbg=red guibg=#ff7a93
 match ExtraWhitespace /\s\+$/
 
-" Comment visual selection
-xnoremap <leader>c :s/^/#/<CR>
-
-" Uncomment visual selection (removes leading #)
-xnoremap <leader>u :s/^#//<CR>
