@@ -75,6 +75,9 @@ autocmd VimEnter * NERDTree | if !argc() == 0 || exists('s:std_in') || !v:this_s
 autocmd FileType nerdtree nmap <buffer> <CR> go
 autocmd FileType nerdtree nmap <buffer> <Space> o
 
+autocmd FileType nerdtree nmap <buffer> <M-Up> u
+autocmd FileType nerdtree nmap <buffer> <M-Right> C
+
 " this would be nice but it makes the tig plugin fail in the first launch
 "autocmd DirChanged * execute 'NERDTreeCWD'
 
