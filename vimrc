@@ -87,7 +87,7 @@ set termguicolors
 let g:tokyonight_style = 'night' " available: night, storm
 let g:tokyonight_enable_italic = 1
 
-colorscheme tokyonight
+Colorscheme tokyonight
 
 " Lightline
 let g:lightline = {
@@ -120,6 +120,14 @@ tnoremap <S-Tab> <C-w>w
 nnoremap <expr> <C-t> (&filetype ==# 'nerdtree' ? '' : ':TigOpenCurrentFile<CR>')
 nnoremap <expr> <C-y> (&filetype ==# 'nerdtree' ? '' : ':TigOpenProjectRootDir<CR>')
 nnoremap <expr> <C-b> (&filetype ==# 'nerdtree' ? '' : ':TigBlame<CR>')
+
+" unmap tig keys as they create awkward situations
+
+let g:tig_explorer_keymap_edit_e  = ''
+let g:tig_explorer_keymap_edit    = ''
+let g:tig_explorer_keymap_tabedit = ''
+let g:tig_explorer_keymap_split   = ''
+let g:tig_explorer_keymap_vsplit  = ''
 
 " toggle NERDTree
 " toggle line numbers
