@@ -111,6 +111,11 @@ let g:tokyonight_enable_italic = 1
 
 colorscheme tokyonight
 
+" improve contrast on the NERDTree selected line
+" this is standard color 237 which will be used by tig
+" in the highlighted lines
+highlight CursorLine guibg=#3a3a3a
+
 " Lightline
 let g:lightline = {
       \ 'colorscheme': 'wombat',
