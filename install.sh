@@ -30,7 +30,9 @@ wget -O ~/.vim/autoload/plug.vim https://raw.githubusercontent.com/junegunn/vim-
 echo | vim +PlugInstall +qall &> /dev/null
 
 # fine tune tigrc for colors
-egrep color $HOME/.tigrc | grep -v "^#" | grep -q cursor || echo "color cursor default color237" >> $HOME/.tigrc
+if [ -f $HOME/.tigrc ]; then
+  egrep color $HOME/.tigrc | grep -v "^#" | grep -q cursor || echo "color cursor default color237" >> $HOME/.tigrc
+fi
 
 echo
 echo "You vim configuration is now IDEalized."
